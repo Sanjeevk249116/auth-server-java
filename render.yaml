@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: spring-boot-app
+    runtime: java
+    buildCommand: mvn clean package
+    startCommand: java -jar target/Auth-server.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 17

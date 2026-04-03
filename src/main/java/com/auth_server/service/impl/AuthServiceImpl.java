@@ -8,6 +8,7 @@ import com.auth_server.entity.RefreshToken;
 import com.auth_server.entity.Role;
 import com.auth_server.entity.User;
 import com.auth_server.enums.RoleEnum;
+import com.auth_server.exceptionHandling.CustomException;
 import com.auth_server.repository.RoleRepository;
 import com.auth_server.repository.UserRepository;
 import com.auth_server.security.CustomerUserDetail;
@@ -75,9 +76,9 @@ public class AuthServiceImpl implements AuthService {
 
             return buildApiResponse(accessToken, refreshToken.getToken(), customerUserDetail);
         } catch (BadCredentialsException e) {
-            throw new RuntimeException("Invalid email or password");
+            throw new CustomException("Invalid email or password", 401);
         } catch (UsernameNotFoundException e) {
-            throw new IllegalArgumentException("User not found");
+            throw new CustomException("User not found", 400);
         }
     }
 

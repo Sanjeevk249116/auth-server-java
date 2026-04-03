@@ -11,7 +11,6 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
-# Your app runs on 5008
 EXPOSE 5008
 
 CMD ["java", "-jar", "app.jar"]
